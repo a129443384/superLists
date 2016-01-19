@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+from django.test import LiveServerTestCase
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         profile = webdriver.FirefoxProfile()
@@ -26,7 +26,7 @@ class NewVisitorTest(unittest.TestCase):
     def  test_can_start_a_list_and_retrieve_it_later(self):
         
         # 彤彤聽說有一款很酷的待辦事項應用程式，她前往它的首頁
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # 她注意到首頁的標題提到了待辦事項清單 
         self.assertIn('待辦事項', self.browser.title)
@@ -65,6 +65,5 @@ class NewVisitorTest(unittest.TestCase):
         # 她很滿意，就上床睡覺了
 
 
-if __name__=='__main__':
-    unittest.main(warnings='ignore')
+
     
